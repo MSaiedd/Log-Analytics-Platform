@@ -1,7 +1,7 @@
 package com.udemy.log.service;
 
 import com.udemy.log.entity.Log;
-import com.udemy.log.repository.LogSearchRepository;
+import com.udemy.log.dao.LogSearchRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +11,6 @@ import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;

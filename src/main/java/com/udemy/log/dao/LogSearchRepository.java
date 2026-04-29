@@ -1,4 +1,4 @@
-package com.udemy.log.repository;
+package com.udemy.log.dao;
 
 import com.udemy.log.entity.Log;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
