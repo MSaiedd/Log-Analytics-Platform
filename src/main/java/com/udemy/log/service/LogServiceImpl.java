@@ -8,6 +8,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class LogServiceImpl implements LogService {
@@ -27,17 +28,17 @@ public class LogServiceImpl implements LogService {
             System.out.println("LOG SENT TO REDIS SUCCESSFULLY");
             return true;
         }
+
         System.out.println("LOG HAS NOT BEEN SENT TO REDIS SUCCESSFULLY");
         return false;
     }
 
     private boolean publish(Log log) {
-        HashMap<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         map.put("service", log.getService());
         map.put("level", log.getLevel());
         map.put("message", log.getMessage());
         map.put("timestamp", log.getTimestamp().toString());
-
         RecordId recordId = stringRedisTemplate.opsForStream()
                 .add(StreamRecords.mapBacked(map).withStreamKey(streamKey));
 

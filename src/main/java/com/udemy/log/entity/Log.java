@@ -1,30 +1,62 @@
 package com.udemy.log.entity;
 
-import java.sql.Timestamp;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import java.time.Instant;
+
+@Document(indexName = "app-logs")
 public class Log {
-    //that time stamp is different from the one will be added to the database
-    //its the timestamp of the log itself
-    private Timestamp timestamp;
+
+    @Id
+    private String id;
+
+    @Field(type = FieldType.Date, format = DateFormat.date_time)
+    private Instant timestamp;
+
+    @Field(type = FieldType.Keyword)
     private String service;
+
+    @Field(type = FieldType.Keyword)
     private String level;
+
+    @Field(type = FieldType.Text)
     private String message;
 
     public Log() {
     }
 
-    public Log(Timestamp timestamp, String service, String level, String message) {
+    public Log(Instant timestamp, String service, String level, String message) {
         this.timestamp = timestamp;
         this.service = service;
         this.level = level;
         this.message = message;
     }
 
-    public Timestamp getTimestamp() {
+    public Log(String id, Instant timestamp, String service, String level, String message) {
+        this.id = id;
+        this.timestamp = timestamp;
+        this.service = service;
+        this.level = level;
+        this.message = message;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Instant getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -50,15 +82,5 @@ public class Log {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    @Override
-    public String toString() {
-        return "Log{" +
-                "timestamp=" + timestamp +
-                ", service='" + service + '\'' +
-                ", level='" + level + '\'' +
-                ", message='" + message + '\'' +
-                '}';
     }
 }
