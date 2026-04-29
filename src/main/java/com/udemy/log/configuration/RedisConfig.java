@@ -17,16 +17,19 @@ public class RedisConfig {
     @Value("${app.redis.stream.workers}")
     private int workerCount;
 
+    //template of elements will be pushed to redis (logs : strings)
     @Bean
     public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory connectionFactory) {
         return new StringRedisTemplate(connectionFactory);
     }
 
+    //thread pool execute which is needed by the listener
     @Bean
     public Executor redisStreamExecutor() {
         return Executors.newFixedThreadPool(workerCount);
     }
 
+    //polling optionss
     @Bean
     public StreamMessageListenerContainer<String, MapRecord<String, String, String>> streamContainer(
             RedisConnectionFactory connectionFactory,

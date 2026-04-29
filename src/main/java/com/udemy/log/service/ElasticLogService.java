@@ -10,11 +10,9 @@ import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.stereotype.Service;
-
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-
 import static co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders.bool;
 import static co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders.match;
 import static co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders.range;

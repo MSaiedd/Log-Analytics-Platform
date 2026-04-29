@@ -30,7 +30,7 @@ public class RedisStreamSetupService {
             connection.streamCommands().xGroupCreate(
                     streamKey.getBytes(),
                     groupName,
-                    ReadOffset.from("0-0"),
+                    ReadOffset.from("0-0"), //to read from the start of the stream $ if I want to be the end
                     true
             );
 
